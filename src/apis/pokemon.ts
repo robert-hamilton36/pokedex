@@ -9,6 +9,13 @@ export const callApi = () => {
     })
 }
 
+export const callUrl = (url = rootUrl) => {
+    return request.get(url)
+    .then ( res => {
+        return res.body
+    })
+}
+
 export const getPokemon = (id:string) => {
     return request.get(rootUrl+ 'pokemon/' + id)
     .then ( res => {
