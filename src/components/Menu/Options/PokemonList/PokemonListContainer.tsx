@@ -10,7 +10,7 @@ export const PokemonListContainer = () => {
     useEffect (()=> {
         getPokemonList()
         .then( results => setPokeList(results) )
-    })
+    }, [])
     
     return (
         <PokemonListRenderer pokeList={pokeList}/>
