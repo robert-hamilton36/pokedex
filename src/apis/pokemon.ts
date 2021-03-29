@@ -18,8 +18,8 @@ export const getPokemon = (id:string) => {
 }
 
 
-export function getPokemonList () {
-    return request.get(rootUrl + 'pokemon')
+export function getPokemonList (limit = 50, offset = 0) {
+    return request.get(rootUrl + 'pokemon/?limit=' + limit + '&offset=' + offset)
     .then( res => {
         return res.body.results
     })
