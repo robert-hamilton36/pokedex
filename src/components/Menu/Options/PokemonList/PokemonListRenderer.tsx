@@ -22,7 +22,7 @@ export const PokemonListRenderer: React.FC<Props> = (props) => {
                 // let link = "/pokemon/" + (index + 1)
                 //pokemon.url gives the api address for that pokemon, this removes everything but /pokemon/number
                 let link = pokemon.url.replace("https://pokeapi.co/api/v2", "")
-            return <li key={index}><Link to={link}><p>{capitalize(pokemon.name)}</p></Link></li>
+            return <li key={index}><Link to={link}><p>{pokemon.url.replace("https://pokeapi.co/api/v2/pokemon/", "").replace("/","") + " " + capitalize(pokemon.name)}</p></Link></li>
             })}
         </ul>
         </>
