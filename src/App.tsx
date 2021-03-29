@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import { PokemonListContainer } from './components/pokemon/PokemonListContainer'
-import { PokemonViewContainer } from './components/pokemon/PokemonViewContainer';
+import HomeButton from './components/Menu/HomeButton';
+import { PokemonListContainer } from './components/Menu/Options/PokemonList/PokemonListContainer'
+import { PokemonViewContainer } from './components/Pokemon/PokemonViewContainer';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <PokemonViewContainer/>
         </Route>
       </Switch>
+      <HomeButton/>
     </Router>
   )
 }
