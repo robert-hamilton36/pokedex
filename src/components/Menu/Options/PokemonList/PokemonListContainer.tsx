@@ -1,6 +1,6 @@
 import React,{ useEffect, useState }  from 'react'
 
-import { getPokemonList } from '../../apis/pokemon'
+import { getPokemonList } from '../../../../apis/pokemon'
 import { PokemonListRenderer } from './PokemonListRenderer'
 
 
