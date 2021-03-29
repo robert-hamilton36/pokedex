@@ -12,9 +12,9 @@ interface Props{
 
 export default function PokemonViewRenderer(props:Props) {
     return (
-        <div>
+        <>
             <h1>{capitalize(props.pokemonInfo.name)}</h1>
             <img src={props.pokemonInfo.sprites.front_default} />
-        </div>
+        </>
     )
 }
