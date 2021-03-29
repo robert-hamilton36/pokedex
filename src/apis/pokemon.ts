@@ -24,6 +24,13 @@ export const getPokemon = (id:string) => {
     })
 }
 
+export const getGenerations = () => {
+    return request.get(rootUrl+ 'generation/')
+    .then ( res => {
+        console.log(res.body)
+        return res.body
+    })
+}
 
 export function getPokemonList (limit = 50, offset = 0) {
     return request.get(rootUrl + 'pokemon/?limit=' + limit + '&offset=' + offset)
