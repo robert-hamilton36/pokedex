@@ -7,6 +7,16 @@ import PokemonViewRenderer from './PokemonViewRenderer'
 interface Pokemon{
     name: string
     sprites: object
+    height: number
+    weight: number
+    types: Array<Type>
+}
+
+interface Type{
+    type: {
+        name:string
+        url:string
+    }
 }
 
 export const PokemonViewContainer = () => {
@@ -16,7 +26,7 @@ export const PokemonViewContainer = () => {
     useEffect (()=> {
         getPokemon(pokemonId)
         .then( results => setPokemonInfo(results) )
-    }, [])
+    }, [pokemonId])
 
     if(pokemonInfo){
         return (

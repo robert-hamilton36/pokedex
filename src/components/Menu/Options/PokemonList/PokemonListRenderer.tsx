@@ -16,7 +16,6 @@ export const PokemonListRenderer: React.FC<Props> = (props) => {
     return (
         <>
         <ul>
-            <Link to="/pokemon/1">To pokemon</Link>
             {props.pokeList.map((pokemon, index) => {
                 
                 // let link = "/pokemon/" + (index + 1)
