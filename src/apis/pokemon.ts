@@ -32,9 +32,9 @@ export const getGenerations = () => {
     })
 }
 
-export function getPokemonList (limit = 50, offset = 0) {
-    return request.get(rootUrl + 'pokemon/?limit=' + limit + '&offset=' + offset)
+export function getPokemonList () {
+    return request.get(rootUrl + 'pokedex/1/')
     .then( res => {
-        return res.body.results
+        return res.body
     })
 }
