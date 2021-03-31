@@ -32,8 +32,25 @@ export const getGenerations = () => {
     })
 }
 
-export function getPokemonList () {
-    return request.get(rootUrl + 'pokedex/1/')
+//you can add an argument to get the specific generation or leave blank to get list
+export const getGenerationList = (generationNumber = '/') => {
+    return request.get(rootUrl + 'generation' + generationNumber)
+    .then( res => {
+        return res.body.results
+    })
+}
+
+
+//TODO refactor the two function together
+export function getPokedexList () {
+    return request.get(rootUrl + 'pokedex/')
+    .then( res => {
+        return res.body.results
+    })
+}
+
+export function getPokemonList (number:number) {
+    return request.get(rootUrl + 'pokedex/' + number)
     .then( res => {
         return res.body
     })
