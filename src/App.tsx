@@ -7,6 +7,7 @@ import { PokemonViewContainer } from './components/Pokemon/PokemonViewContainer'
 function App() {
   return (
     <Router>
+      <HomeButton/>
       <Switch>
         <Route exact path="/">
           <PokemonListContainer/>
@@ -15,7 +16,6 @@ function App() {
           <PokemonViewContainer/>
         </Route>
       </Switch>
-      <HomeButton/>
     </Router>
   )
 }

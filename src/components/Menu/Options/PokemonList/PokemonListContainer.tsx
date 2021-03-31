@@ -1,37 +1,46 @@
 import React,{ useEffect, useState }  from 'react'
 
-import { getPokemonList } from '../../../../apis/pokemon'
-import { PokemonListButtons } from './PokemonListButtons'
-import { PokemonListLimitOptions } from './PokemonListLimitOptions'
+import { getPokemonList, getPokedexList } from '../../../../apis/pokemon'
+import { PokedexListRender } from '../PokedexList/PokedexListRender'
 import { PokemonListRenderer } from './PokemonListRenderer'
 
 interface Pokemon {
+    entry_number: number
+    pokemon_species: NameUrl
+}
+
+interface NameUrl{
     name: string
     url:string
 }
 
 export const PokemonListContainer = () => {
-    const [pokeList, setPokeList] = useState<Array<Pokemon>>([])
-    const [offset, setOffset] = useState<number>(0)
-    const [limit, setLimit] = useState<number>(50)
+    const [ pokeList, setPokeList ] = useState<Array<Pokemon>>([])
+    const [ pokedexVersionList, setPokedexVersionList ] = useState<Array<NameUrl>>([])
+    const [ selectedPokedexVersion, setSelectedPokedexVersion ] = useState<number>(2)
 
-    const childSetOffset = (value: number) => {
-        setOffset(value)
+    useEffect (() => {
+        getPokemonList(selectedPokedexVersion)
+        .then(results => setPokeList(results.pokemon_entries))
+    }, [selectedPokedexVersion])
+
+    useEffect (() => {
+        getPokedexList()
+        .then(results => {
+            console.log(results)
+            let allowedPokedexList = ["national", "kanto", "original-johto", "hoenn", "original-sinnoh", "original-unova"]
+            let pokedex: Array<NameUrl> = results.filter((pokedexEntry: NameUrl) => allowedPokedexList.includes(pokedexEntry.name) )
+            setPokedexVersionList(pokedex)
+        })
+    }, [])
+
+    const childSetSelectedPokedexVersion = (number:number) => {
+        setSelectedPokedexVersion(number)
     }
-
-    const childSetLimit = (value:number) => {
-        setLimit(value)
-    }
-
-    useEffect (()=> {
-        getPokemonList(limit, offset)
-        .then( results => setPokeList(results) )
-    }, [offset, limit])
     
     return (
         <>
-        <PokemonListLimitOptions limit={limit} setLimit={childSetLimit}/>
-        <PokemonListButtons limit={limit} offset={offset} setOffset={childSetOffset}/>
+        <PokedexListRender pokedexList={pokedexVersionList} selectedPokedexVersion={selectedPokedexVersion} setSelectedPokedexVersion={childSetSelectedPokedexVersion}/>
         <PokemonListRenderer pokeList={pokeList}/>
         </>
     )
