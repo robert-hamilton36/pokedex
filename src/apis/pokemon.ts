@@ -11,8 +11,12 @@ export const callApi = () => {
 
 export const callUrl = (url = rootUrl) => {
     return request.get(url)
-    .then ( res => {
-        return res.body
+    .then( res => {
+        if(res.body){
+            console.log(res.body)
+            return res.body
+        }
+        return
     })
 }
 

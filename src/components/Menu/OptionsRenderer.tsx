@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 interface Props {
     options: ListObjects[]
@@ -18,7 +19,8 @@ export const OptionsRenderer: React.FC<Props> = (props) => {
                         <h3>{option.name}</h3>
                         <ul>
                             {option.listOptions.map((selector)=>{
-                                return <li key={selector}>{selector}</li>
+                                let link:string = "/pokemonlist:" + selector
+                                return <li key={selector}><Link to={link}>{selector}</Link></li>
                             })}
                         </ul>
                     </div></li>
